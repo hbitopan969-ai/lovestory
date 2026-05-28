@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸『𝓛𝓸𝓿𝓮 𝓢𝓽𝓸𝓻𝔂』🌸</title>
+    <style>
+        /* बेसिक रीसेट और फॉन्ट */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* फुल स्क्रीन बैकग्राउंड वीडियो */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* वीडियो के ऊपर हल्का डार्क पर्दा (ताकि टेक्स्ट साफ दिखे) */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+
+        /* मेन कंटेनर (स्क्रॉलिंग स्मूथ रखने के लिए) */
+        .wrapper {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* कार्ड स्टाइल */
+        .gc-card {
+            background: rgba(255, 192, 203, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 182, 193, 0.4);
+            border-radius: 25px;
+            padding: 30px 20px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(255, 105, 180, 0.2);
+            z-index: 1;
+        }
+
+        /* मूविंग और रोटेटिंग डीपी इफ़ेक्ट */
+        .dp-container {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 20px auto;
+            position: relative;
+        }
+
+        .gc-dp {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffb6c1;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+            /* एनिमेशन: घूमना और तैरना दोनों एक साथ */
+            animation: floatAndRotate 8s linear infinite;
+        }
+
+        @keyframes floatAndRotate {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(360deg);
+            }
+        }
+
+        /* हल्का ग्लो टेक्स्ट इफ़ेक्ट */
+        .glow-text {
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255, 105, 180, 0.6), 0 0 15px rgba(255, 182, 193, 0.4);
+        }
+
+        .gc-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .divider {
+            margin: 15px 0;
+            color: #ffb6c1;
+            letter-spacing: 2px;
+        }
+
+        /* नियमों और डिस्क्रिप्शन की लिस्ट */
+        .gc-rules {
+            text-align: left;
+            margin: 20px auto;
+            max-width: 320px;
+            list-style: none;
+        }
+
+        .gc-rules li {
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+
+        .gc-rules li span {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* थॉट/शायरी सेक्शन */
+        .quote-box {
+            font-style: italic;
+            margin: 20px 0;
+            color: #ffe4e1;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .footer-note {
+            font-size: 0.9rem;
+            color: #ffb6c1;
+            margin-bottom: 25px;
+        }
+
+        /* खूबसूरत जॉइन बटन */
+        .btn-join {
+            display: inline-block;
+            text-decoration: none;
+            background: linear-gradient(45deg, #ff65a3, #ff85a1);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4), 0 0 10px rgba(255, 105, 180, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-join:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(255, 105, 180, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+            background: linear-gradient(45deg, #ff85a1, #ff65a3);
+        }
+
+        /* ऑडियो प्लेयर छुपा हुआ रहेगा */
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- बैकग्राउंड वीडियो (यह ऑटोमैटिक लूप में चलेगी) -->
+    <video class="video-background" autoplay loop muted playsinline>
+        <source src="https://files.catbox.moe/ahug0j.mp4" type="video/mp4">
+    </video>
+
+    <!-- वीडियो को साफ़ दिखाने के लिए ओवरले -->
+    <div class="overlay"></div>
+
+    <!-- बैकग्राउंड म्यूज़िक (ऑटोप्ले के साथ) -->
+    <audio autoplay loop controls id="bg-music">
+        <source src="https://files.catbox.moe/9t77g7.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- मुख्य कंटेंट -->
+    <div class="wrapper">
+        <div class="gc-card">
+            
+            <!-- मूविंग और रोटेटिंग ग्रुप डीपी -->
+            <div class="dp-container">
+                <img src="https://ibb.co/PGTpJpRX" alt="Group DP" class="gc-dp">
+            </div>
+
+            <!-- ग्रुप का नाम -->
+            <h1 class="gc-title glow-text">🌸『𝓛𝓸𝓿𝓮 𝓢𝓽𝓸𝓻𝔂』🌸</h1>
+            
+            <p class="glow-text" style="color: #ffe4e1; font-weight: 500;">💞 Welcome To Our Cute & Beautiful World 💞</p>
+
+            <div class="divider">━━━━━━━━━━━━━━━</div>
+
+            <!-- नियम और फीचर्स -->
+            <ul class="gc-rules">
+                <li><span>💖</span> Respect Everyone</li>
+                <li><span>🌷</span> No Hate • Only Love</li>
+                <li><span>🥺</span> Stay Loyal & Friendly</li>
+                <li><span>✨</span> Keep Chatting & Enjoy</li>
+                <li><span>🫶</span> No Fighting Allowed</li>
+                <li><span>🌙</span> Spread Positive Vibes</li>
+                <li><span>💕</span> Couple Lovers Welcome</li>
+                <li><span>🎀</span> Make Sweet Memories Here</li>
+            </ul>
+
+            <div class="divider">━━━━━━━━━━━━━━━</div>
+
+            <!-- लव कोट -->
+            <div class="quote-box glow-text">
+                💌 “Love Is Not Perfect,<br>But True Love Always Stays.” 💌
+            </div>
+
+            <p class="footer-note glow-text">
+                🌸 Every Member Is Special 🌸<br>
+                💞 Stay Active • Stay Happy 💞<br>
+                ✨ Forever Together ✨
+            </p>
+
+            <!-- जॉइन बटन -->
+            <a href="https://chat.whatsapp.com/D5rF2DJwsna79H9ZDOMT05" target="_blank" class="btn-join">
+                💖 Join Group 💖
+            </a>
+
+        </div>
+    </div>
+
+    <!-- ब्राउज़र ऑटोप्ले पॉलिसी हैंडलर (स्क्रीन पर कहीं भी टच करने से म्यूजिक शुरू हो जाएगा अगर ब्लॉक हुआ तो) -->
+    <script>
+        window.addEventListener('click', () => {
+            const music = document.getElementById('bg-music');
+            if (music.paused) {
+                music.play();
+            }
+        });
+    </script>
+
+</body>
+</html>
